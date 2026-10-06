@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#edf0eb" />
+  <title>Account · ChangeWatch</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="app-page account-page">
+  <div class="account-shell">
+    <header class="account-header">
+      <a class="brand brand-inverse" href="/">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>ChangeWatch</span>
+      </a>
+      <nav class="account-nav">
+        <a href="/app.html">Dashboard</a>
+        <button type="button" id="logout-btn" class="text-action">Log out</button>
+      </nav>
+    </header>
+
+    <main class="account-main">
+      <section class="surface account-card">
+        <span class="section-tag">Account</span>
+        <h1>Your profile</h1>
+
+        <form id="profile-form" class="auth-form account-form">
+          <label class="field">
+            <span>Display name</span>
+            <input id="display-name" name="displayName" maxlength="80" required />
+          </label>
+          <label class="field">
+            <span>Email</span>
+            <input id="email" type="email" disabled />
+          </label>
+          <p id="profile-error" class="inline-error" role="alert" hidden></p>
+          <p id="profile-success" class="inline-error auth-success" role="status" hidden></p>
+          <button class="btn btn-primary" type="submit">Save display name</button>
+        </form>
+
+        <div class="account-meta">
+          <div>
+            <span class="metric-label">Current plan</span>
+            <strong id="plan-label">—</strong>
+          </div>
+          <div>
+            <span class="metric-label">Member since</span>
+            <strong id="member-since">—</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="surface account-card">
+        <span class="section-tag">Billing</span>
+        <h2>Subscription</h2>
+        <p class="surface-copy">Stripe billing is coming next. Your plan limits are enforced on the server today.</p>
+        <div class="billing-soon">Coming soon</div>
+        <p id="plan-intent" class="form-hint" hidden></p>
+      </section>
+    </main>
+  </div>
+  <script src="/auth.js"></script>
+  <script src="/account.js"></script>
+</body>
+</html>

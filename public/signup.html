@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f2f4ef" />
+  <title>Create account · ChangeWatch</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-shell">
+    <a class="brand" href="/" aria-label="ChangeWatch home">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span>ChangeWatch</span>
+    </a>
+
+    <div class="auth-card">
+      <h1>Create your ChangeWatch account</h1>
+      <p class="auth-lede">Start free. Upgrade when you need more monitors.</p>
+
+      <form id="signup-form" class="auth-form">
+        <label class="field">
+          <span>Display name</span>
+          <input name="displayName" required maxlength="80" autocomplete="name" />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input name="email" type="email" required autocomplete="email" />
+        </label>
+        <label class="field">
+          <span>Password</span>
+          <input name="password" type="password" required minlength="8" autocomplete="new-password" />
+        </label>
+        <label class="field">
+          <span>Confirm password</span>
+          <input name="confirmPassword" type="password" required minlength="8" autocomplete="new-password" />
+        </label>
+        <p id="signup-error" class="inline-error" role="alert" hidden></p>
+        <p id="signup-success" class="inline-error auth-success" role="status" hidden></p>
+        <button class="btn btn-dark auth-submit" type="submit">Create account</button>
+      </form>
+
+      <div class="auth-links">
+        <a href="/login.html">Already have an account?</a>
+      </div>
+    </div>
+  </div>
+  <script src="/auth.js"></script>
+  <script>
+    const form = document.getElementById("signup-form");
+    const errorEl = document.getElementById("signup-error");
+    const successEl = document.getElementById("signup-success");
+    const plan = new URLSearchParams(window.location.search).get("plan");
+    if (plan === "pro" || plan === "power") {
+      document.querySelector(".auth-lede").textContent =
+        `You selected ${plan === "power" ? "Power" : "Pro"}. Create an account to continue.`;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      errorEl.hidden = true;
+      successEl.hidden = true;
+      const body = Object.fromEntries(new FormData(form).entries());
+      if (body.password !== body.confirmPassword) {
+        errorEl.hidden = false;
+        errorEl.textContent = "Passwords do not match.";
+        return;
+      }
+      const button = form.querySelector("button[type=submit]");
+      button.disabled = true;
+      try {
+        const result = await authRequest("/api/auth/signup", {
+          method: "POST",
+          body: JSON.stringify({
+            displayName: body.displayName,
+            email: body.email,
+            password: body.password
+          })
+        });
+        if (result.needsEmailConfirmation) {
+          successEl.hidden = false;
+          successEl.textContent = result.message;
+          return;
+        }
+        const next = plan ? `/app.html?plan=${encodeURIComponent(plan)}` : "/app.html";
+        window.location.href = next;
+      } catch (err) {
+        errorEl.hidden = false;
+        errorEl.textContent = err.message;
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0c0e" />
+  <title>Dashboard · ChangeWatch</title>
+  <meta name="description" content="Monitor public webpages and review exactly what changed." />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="app-page">
+  <div class="dashboard-shell">
+    <aside class="sidebar">
+      <a class="brand brand-inverse" href="/" aria-label="ChangeWatch home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span>ChangeWatch</span>
+      </a>
+
+      <nav class="side-nav" aria-label="Dashboard navigation">
+        <a class="side-link active" href="#overview">
+          <span class="nav-icon" aria-hidden="true">⌁</span>
+          Overview
+        </a>
+        <a class="side-link" href="#watches-section">
+          <span class="nav-icon" aria-hidden="true">◎</span>
+          Watches
+        </a>
+        <a class="side-link" href="#alerts-section">
+          <span class="nav-icon" aria-hidden="true">↯</span>
+          Changes
+        </a>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="account-panel" id="account-panel">
+          <strong id="account-name">—</strong>
+          <span id="account-plan">—</span>
+          <div class="account-panel-links">
+            <a href="/account.html">Account</a>
+            <button type="button" id="logout-link" class="sidebar-logout">Log out</button>
+          </div>
+        </div>
+        <div class="system-status">
+          <span class="status-light"></span>
+          <div>
+            <strong>Monitor online</strong>
+            <span>Public pages only</span>
+          </div>
+        </div>
+        <a href="/" class="sidebar-back">← Product site</a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main" id="overview">
+      <header class="dashboard-header">
+        <div>
+          <p class="kicker">Workspace</p>
+          <h1>Website monitor</h1>
+          <p class="dashboard-subtitle">Track important pages and see the signal without babysitting browser tabs.</p>
+        </div>
+        <button class="btn btn-secondary refresh-btn" id="refresh" type="button">
+          <span aria-hidden="true">↻</span>
+          Refresh
+        </button>
+      </header>
+
+      <section class="metric-grid" aria-label="Monitoring summary">
+        <article class="metric-card">
+          <span class="metric-label">Active watches</span>
+          <strong class="metric-value" id="metric-active">—</strong>
+          <span class="metric-note">currently checking</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Changes</span>
+          <strong class="metric-value" id="metric-changes">—</strong>
+          <span class="metric-note">detected events</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">Paused</span>
+          <strong class="metric-value" id="metric-paused">—</strong>
+          <span class="metric-note">not being checked</span>
+        </article>
+        <article class="metric-card metric-card-status">
+          <span class="metric-label">Health</span>
+          <strong class="metric-value metric-health" id="metric-health">—</strong>
+          <span class="metric-note" id="metric-health-note">loading status</span>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="surface add-watch-card">
+          <div class="surface-heading">
+            <div>
+              <span class="section-tag">New monitor</span>
+              <h2>Watch a page</h2>
+            </div>
+            <span class="step-badge">01</span>
+          </div>
+          <p class="surface-copy">We save the first visible-text snapshot as a baseline. After that, you only see meaningful text changes.</p>
+
+          <form id="watch-form" class="watch-form">
+            <div class="form-row">
+              <label class="field field-grow">
+                <span>Name <small>optional</small></span>
+                <input name="name" placeholder="Competitor pricing" maxlength="80" autocomplete="off" />
+              </label>
+              <label class="field interval-field">
+                <span>Check every</span>
+                <select name="intervalMinutes">
+                  <option value="5">5 min</option>
+                  <option value="15" selected>15 min</option>
+                  <option value="60">1 hour</option>
+                  <option value="360">6 hours</option>
+                  <option value="1440">24 hours</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="field">
+              <span>Page URL</span>
+              <div class="input-with-icon">
+                <span aria-hidden="true">↗</span>
+                <input name="url" type="url" required placeholder="https://example.com/pricing" autocomplete="url" />
+              </div>
+            </label>
+
+            <details class="advanced-options">
+              <summary>Webhook delivery <span>optional</span></summary>
+              <label class="field advanced-field">
+                <span>Webhook URL</span>
+                <input name="webhook" type="url" placeholder="https://hooks.example.com/changewatch" autocomplete="url" />
+              </label>
+            </details>
+
+            <div class="form-footer">
+              <p class="form-hint">Static HTML pages work best. Private addresses are blocked.</p>
+              <button class="btn btn-primary" type="submit">
+                <span>Start watching</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+            <p id="form-error" class="inline-error" role="alert" hidden></p>
+          </form>
+        </article>
+
+        <aside class="surface workflow-card">
+          <span class="section-tag">How it works</span>
+          <ol class="workflow-list">
+            <li class="workflow-item active">
+              <span>1</span>
+              <div><strong>Baseline</strong><small>First snapshot saved</small></div>
+            </li>
+            <li class="workflow-item">
+              <span>2</span>
+              <div><strong>Check</strong><small>Page text compared</small></div>
+            </li>
+            <li class="workflow-item">
+              <span>3</span>
+              <div><strong>Signal</strong><small>Only changes surface</small></div>
+            </li>
+          </ol>
+          <div class="workflow-callout">
+            <span class="callout-dot"></span>
+            <p><strong>Low-noise by design.</strong> Scripts, styles, SVGs, iframes and canvas content are ignored.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="surface data-surface" id="watches-section">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">Monitors</span>
+            <h2>Your watches</h2>
+          </div>
+          <div class="section-meta" id="watch-count">Loading…</div>
+        </div>
+        <div id="watches" class="watch-list" aria-live="polite">
+          <div class="skeleton-row"></div>
+          <div class="skeleton-row"></div>
+        </div>
+      </section>
+
+      <section class="surface data-surface" id="alerts-section">
+        <div class="section-header">
+          <div>
+            <span class="section-tag">History</span>
+            <h2>Recent changes</h2>
+          </div>
+          <span class="section-meta">Newest first</span>
+        </div>
+        <div id="alerts" class="change-list" aria-live="polite">
+          <div class="skeleton-row"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="/auth.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

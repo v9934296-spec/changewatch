@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f2f4ef" />
+  <title>ChangeWatch · Know when the page changes</title>
+  <meta name="description" content="Monitor public webpages, catch meaningful text changes, and stop manually refreshing important pages." />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="marketing-page">
+  <header class="site-nav wrap">
+    <a class="brand" href="/" aria-label="ChangeWatch home">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span>ChangeWatch</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#use-cases">Use cases</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a class="btn btn-dark btn-small" href="/login.html">Sign in <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="hero-eyebrow"><span></span> Website change monitoring</div>
+        <h1>Stop checking.<br><em>Start knowing.</em></h1>
+        <p class="hero-lede">ChangeWatch monitors the public pages you care about and shows exactly what text changed. No browser-tab ritual required.</p>
+        <div class="hero-actions">
+          <a class="btn btn-dark btn-large" href="/signup.html">Watch your first page <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#how">See how it works <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-proof" aria-label="Product features">
+          <span><i></i> No site install</span>
+          <span><i></i> Text-level diffs</span>
+          <span><i></i> Webhook ready</span>
+        </div>
+      </div>
+
+      <div class="product-preview" aria-label="ChangeWatch dashboard preview">
+        <div class="preview-topbar">
+          <div class="preview-dots"><i></i><i></i><i></i></div>
+          <span>changewatch / dashboard</span>
+          <span class="preview-live"><i></i> live</span>
+        </div>
+        <div class="preview-body">
+          <div class="preview-sidebar">
+            <div class="preview-logo"></div>
+            <i class="selected"></i><i></i><i></i><i></i>
+          </div>
+          <div class="preview-main">
+            <div class="preview-heading">
+              <div><small>MONITORS</small><strong>Watching 12 pages</strong></div>
+              <span>+ Add watch</span>
+            </div>
+            <div class="preview-stats">
+              <div><small>ACTIVE</small><b>11</b></div>
+              <div><small>CHANGES</small><b>04</b></div>
+              <div><small>HEALTH</small><b>99%</b></div>
+            </div>
+            <div class="preview-watch changed">
+              <div class="preview-status"></div>
+              <div class="preview-watch-copy"><b>Competitor pricing</b><small>acme.com/pricing</small></div>
+              <span>changed</span>
+            </div>
+            <div class="preview-diff">
+              <div class="diff-head"><b>Pricing changed</b><small>2 min ago</small></div>
+              <p class="diff-remove">− Pro plan · $29 / month</p>
+              <p class="diff-add">+ Pro plan · $39 / month</p>
+            </div>
+            <div class="preview-watch">
+              <div class="preview-status ok"></div>
+              <div class="preview-watch-copy"><b>Status page</b><small>status.acme.com</small></div>
+              <span class="muted-preview">stable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="signal-strip">
+      <div class="wrap signal-row">
+        <span>Pricing</span><i></i><span>Documentation</span><i></i><span>Status pages</span><i></i><span>Listings</span><i></i><span>Public bids</span>
+      </div>
+    </section>
+
+    <section class="section wrap" id="use-cases">
+      <div class="section-intro">
+        <span class="section-label">Use cases</span>
+        <h2>Watch the pages that can actually change your day.</h2>
+        <p>Price moves, status updates, policy edits and new listings are useful when you see them early, not three Tuesdays later.</p>
+      </div>
+      <div class="use-grid">
+        <article class="use-card">
+          <span class="use-number">01</span>
+          <div class="use-icon">$</div>
+          <h3>Pricing intelligence</h3>
+          <p>Track competitor plans, packaging and pricing without maintaining a spreadsheet full of stale screenshots.</p>
+        </article>
+        <article class="use-card featured-use">
+          <span class="use-number">02</span>
+          <div class="use-icon">↯</div>
+          <h3>Operational changes</h3>
+          <p>Keep an eye on status pages, vendor notices and documentation that your workflow depends on.</p>
+        </article>
+        <article class="use-card">
+          <span class="use-number">03</span>
+          <div class="use-icon">◎</div>
+          <h3>New opportunities</h3>
+          <p>Monitor listings, public bid boards and availability pages so new entries reach you while they still matter.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section process-section" id="how">
+      <div class="wrap">
+        <div class="section-intro process-intro">
+          <span class="section-label">How it works</span>
+          <h2>Three steps. Very little ceremony.</h2>
+        </div>
+        <div class="process-grid">
+          <article>
+            <span class="process-num">01</span>
+            <div><h3>Paste the URL</h3><p>Add any public HTTP or HTTPS page. Give it a name if human memory deserves help.</p></div>
+          </article>
+          <article>
+            <span class="process-num">02</span>
+            <div><h3>We save a baseline</h3><p>Visible text is extracted and hashed. Scripts and layout noise are discarded before comparison.</p></div>
+          </article>
+          <article>
+            <span class="process-num">03</span>
+            <div><h3>You get the diff</h3><p>When the text changes, see added and removed lines in the dashboard and optionally send a webhook.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="pricing">
+      <div class="pricing-heading">
+        <div class="section-intro">
+          <span class="section-label">Pricing</span>
+          <h2>Start small. Monitor more when it earns its keep.</h2>
+        </div>
+        <p class="pricing-note">Paid plans will connect through Stripe next. Limits below are enforced on the server today.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <span class="plan-name">Free</span>
+          <div class="plan-price"><strong>$0</strong><span>forever</span></div>
+          <p>For trying the workflow on a few important pages.</p>
+          <ul><li>5 watches</li><li>6-hour monitoring</li><li>In-app changes</li></ul>
+          <a class="btn btn-outline" href="/signup.html">Start free</a>
+        </article>
+        <article class="price-card price-primary">
+          <div class="popular-tag">Most popular</div>
+          <span class="plan-name">Pro</span>
+          <div class="plan-price"><strong>$9</strong><span>/ month</span></div>
+          <p>For solo operators tracking pages that affect real work.</p>
+          <ul><li>25 watches</li><li>15-minute monitoring</li><li>Change history</li><li>Webhooks</li></ul>
+          <a class="btn btn-light" href="/signup.html?plan=pro">Get Pro</a>
+        </article>
+        <article class="price-card">
+          <span class="plan-name">Power</span>
+          <div class="plan-price"><strong>$19</strong><span>/ month</span></div>
+          <p>For heavier monitoring across more vendors and sources.</p>
+          <ul><li>100 watches</li><li>5-minute monitoring</li><li>Webhooks</li><li>Heavy monitoring</li></ul>
+          <a class="btn btn-outline" href="/signup.html?plan=power">Get Power</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="final-cta wrap">
+      <div>
+        <span class="section-label">Less refreshing</span>
+        <h2>Let the page come to you.</h2>
+      </div>
+      <a class="btn btn-light btn-large" href="/signup.html">Watch a page <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><span></span></span><span>ChangeWatch</span></a>
+    <p>Public pages only. Local and private addresses are blocked.</p>
+    <span>Built for signal, not noise.</span>
+  </footer>
+</body>
+</html>
